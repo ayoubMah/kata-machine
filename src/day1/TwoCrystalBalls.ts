@@ -1,13 +1,19 @@
 export default function two_crystal_balls(breaks: boolean[]): number {
     // so we should return the small index of the 2 indexes
-    let midIndex = (breaks.length)/2;
-    let insdex1 = 0;
-    let index2 = midIndex;
-    // [0 0 0 0 0 1 1 1 1 1 1 ]
-    let i = 0;
-    let j = 0;
+    const jump = Math.floor(Math.sqrt(breaks.length));
+    let i = jump;
+    for (; i < breaks.length ; i += jump ){
+        if (breaks[i]){
+            break;
+        }
+    }
 
-
-    return 0;
+    i -= jump;
+    for (let j = 0 ; j <= jump && i < breaks.length ; ++j , ++i){
+        if (breaks[i]){
+            return i;
+        }
+    }
+    return -1;
 
 }
